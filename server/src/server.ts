@@ -14,19 +14,19 @@ class Server {
 		this.expressServer = null;
 	}
 
-	handleGetRequest = (req: Request, res: Response) => {
+	handleGetRequest(req: Request, res: Response) {
 		Logger.log(`Server.handleGetRequest()`);
 		res.send({ msg: 'Hi from the server' });
-	};
+	}
 
-	startExpress: () => http.Server = () => {
+	startExpress() {
 		const expressApp = express();
 		expressApp.use(express.static(this.PUBLIC_DIR));
 		expressApp.get('/', this.handleGetRequest);
 		return expressApp.listen(this.port, () => {
 			Logger.log(`Server.handleServerListen() listening. port:${this.port}`);
 		});
-	};
+	}
 
 	startServer() {
 		Logger.log(``);
